@@ -14,7 +14,7 @@
 	<name>AllinOne</name>
 	<description>Demo project for All in One using Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
