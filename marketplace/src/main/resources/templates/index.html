@@ -1,10 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Hi customer!</title>
+	<meta charset="UTF-8">
+	<title>Hi customer!</title>
+	<!-- Agrega referencias a CSS para estilos y a cualquier librería de carrusel (ej. Bootstrap) -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <h1>Welcome to All in one demo!</h1>
+	<!-- Banner -->
+	<div class="banner"
+		th:style="'background-image: url(' + ${bannerImageUrl} + '); height: 200px; background-size: cover;'">
+		<h1>Welcome to All in one demo!</h1>
+	</div>
+
+	<!-- Carrusel de Productos -->
+	<div id="productCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicadores -->
+		<ol class="carousel-indicators">
+			<li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#productCarousel" data-slide-to="1"></li>
+			<!-- ... más indicadores ... -->
+		</ol>
+
+		<div class="carousel-inner">
+			<!-- Itera sobre la lista de productos y genera elementos para cada uno -->
+			<th:block th:each="product, iterStat : ${productList}">
+            <div th:classappend="${iterStat.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+                <img th:src="${product.imageUrl}" class="d-block w-100 img-responsive" th:alt="${product.name}">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 th:text="${product.name}">Nombre del Producto</h5>
+                </div>
+            </div>
+        </th:block>
+		</div>
+
+		<!-- Controles -->
+		<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+	</div>
+
+	<script>
+		// Script para manejar el clic en la imagen del carrusel
+		$('.carousel').carousel({
+			interval: 2000
+		});
+
+		$('.carousel-item img').on('click', function () {
+			var productId = $(this).data('id');
+			window.location.href = '/product/' + productId;
+		});
+	</script>
 </body>
+
 </html>

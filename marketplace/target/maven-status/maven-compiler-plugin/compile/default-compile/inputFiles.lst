@@ -1,2 +1,10 @@
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/controller/ProductController.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/repository/ProductRepository.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/DataInitializer.java
 /home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/AllinOneApplication.java
-/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/controller/SimpleController.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/controller/SimpleController.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/service/S3Service.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/data/Product.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/service/ProductService.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/data/Feature.java
+/home/jguerrom/AWS-AppRunner/All-In-One/marketplace/src/main/java/com/allinone/demo/repository/FeatureRepository.java
