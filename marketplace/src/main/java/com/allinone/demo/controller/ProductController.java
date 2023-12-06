@@ -4,6 +4,8 @@ import com.allinone.demo.data.Product;
 import com.allinone.demo.service.ProductService;
 import com.allinone.demo.service.S3Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,5 +33,12 @@ public class ProductController {
 		String signedUrl = s3Service.generatePresignedUrl(id);
 		return ResponseEntity.ok(signedUrl);
 	}
+	
+	@GetMapping("/celulares")
+    public String celulares(Model model) {
+		List<Product> products= productService.getAllProducts();
+		model.addAttribute("products", products);
+		return "products";
+    }
 
 }

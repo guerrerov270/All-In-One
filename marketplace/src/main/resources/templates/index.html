@@ -8,13 +8,170 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style>
+		/* Estilos generales */
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		/* Estilos del Banner */
+		.banner {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #ffffff;
+			text-shadow: 2px 2px 4px #000000;
+			height: 400px;
+			/* Tamaño aumentado para el banner */
+			background-size: cover;
+		}
+
+		.banner h1 {
+			font-size: 98px;
+			/* Aumenta el tamaño de la fuente a 48px */
+			color: #ffffff;
+			/* Asegúrate de que el color de la fuente sea legible sobre el fondo del banner */
+			text-shadow: 2px 2px 4px #000000;
+			/* Sombra de texto para mejorar la legibilidad */
+			margin: 0;
+			/* Elimina el margen por defecto del h1 si es necesario */
+			padding: 0;
+			/* Elimina el padding por defecto del h1 si es necesario */
+		}
+
+		/* Estilos del Carrusel */
+		.carousel-inner {
+			margin: 20px 0;
+		}
+
+		.carousel-item {
+			text-align: center;
+		}
+
+		.carousel-item img {
+			max-height: 500px;
+			/* Ajusta esto según la altura que desees */
+			object-fit: cover;
+			/* Asegúrate de que las imágenes se ajusten bien */
+			border-radius: 10px;
+			/* Bordes redondeados para las imágenes */
+		}
+
+		.carousel-caption {
+			background: rgba(0, 0, 0, 0.5);
+			/* Fondo semitransparente para la leyenda */
+			border-radius: 5px;
+		}
+
+		.carousel-control-prev-icon,
+		.carousel-control-next-icon {
+			filter: invert(100%);
+			/* Hace que los controles sean blancos */
+		}
+
+		/* Estilos para el clic en la imagen del carrusel */
+		.carousel-item img:hover {
+			cursor: pointer;
+			opacity: 0.8;
+		}
+
+		/* Estilos para el contenedor de categorías */
+		.category-container {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			/* 5 columnas */
+			gap: 10px;
+			padding: 20px;
+			background-color: #f4f4f4;
+		}
+
+		.category-item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-decoration: none;
+			color: black;
+		}
+
+		.category-item img {
+			border-radius: 10px;
+			margin-bottom: 8px;
+		}
+
+		.category-item span {
+			text-align: center;
+			font-size: 0.9em;
+		}
+
+		/* Hover effect para los ítems */
+		.category-item:hover {
+			transform: scale(1.05);
+			transition: transform 0.2s ease-in-out;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- Banner -->
 	<div class="banner"
-		th:style="'background-image: url(' + ${bannerImageUrl} + '); height: 200px; background-size: cover;'">
+		th:style="'background-image: url(' + ${bannerImageUrl} + '); height: 500px; background-size: cover;'">
 		<h1>Welcome to All in one demo!</h1>
+	</div>
+
+	<div class="category-container">
+
+		<a href="/celulares" class="category-item">
+			<img th:src="@{${celularesURL}}" alt="Celulares">
+			<span>Celulares</span>
+		</a>
+
+		<a href="/computadores" class="category-item">
+			<img th:src="@{${computadoresURL}}" alt="Computadores">
+			<span>Computadores</span>
+		</a>
+
+		<a href="/tvs" class="category-item">
+			<img th:src="@{${televisoresURL}}" alt="Televisores">
+			<span>Televisores</span>
+		</a>
+
+		<a href="/juegos" class="category-item">
+			<img th:src="@{${videojuegosURL}}" alt="Videojuegos">
+			<span>Videojuegos</span>
+		</a>
+
+		<a href="/accesorios" class="category-item">
+			<img th:src="@{${accesoriosURL}}" alt="Accesorios">
+			<span>Accesorios</span>
+		</a>
+
+		<a href="/audio" class="category-item">
+			<img th:src="@{${audioURL}}" alt="Audio">
+			<span>Audio</span>
+		</a>
+
+		<a href="/navidad" class="category-item">
+			<img th:src="@{${navidadURL}}" alt="Navidad">
+			<span>Navidad</span>
+		</a>
+
+		<a href="/llantas" class="category-item">
+			<img th:src="@{${llantasURL}}" alt="LLantas">
+			<span>LLantas</span>
+		</a>
+
+		<a href="/hogar" class="category-item">
+			<img th:src="@{${hogarURL}}" alt="Hogar">
+			<span>Hogar</span>
+		</a>
+
+		<a href="/pines" class="category-item">
+			<img th:src="@{${pinesURL}}" alt="Pines y Netflix">
+			<span>Pines y Netflix</span>
+		</a>
+
 	</div>
 
 	<!-- Carrusel de Productos -->
@@ -29,24 +186,25 @@
 		<div class="carousel-inner">
 			<!-- Itera sobre la lista de productos y genera elementos para cada uno -->
 			<th:block th:each="product, iterStat : ${productList}">
-            <div th:classappend="${iterStat.index == 0 ? 'carousel-item active' : 'carousel-item'}">
-                <img th:src="${product.imageUrl}" class="d-block w-100 img-responsive" th:alt="${product.name}">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 th:text="${product.name}">Nombre del Producto</h5>
-                </div>
-            </div>
-        </th:block>
+				<div th:classappend="${iterStat.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+					<img th:src="${product.imageUrl}" class="d-block w-100 img-responsive" th:alt="${product.name}">
+					<div class="carousel-caption d-none d-md-block">
+						<h5 th:text="${product.name}">Nombre del Producto</h5>
+					</div>
+				</div>
+			</th:block>
 		</div>
+
 
 		<!-- Controles -->
 		<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 	</div>
 
 	<script>
