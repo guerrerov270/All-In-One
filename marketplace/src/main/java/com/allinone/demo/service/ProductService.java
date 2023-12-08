@@ -4,9 +4,11 @@ import com.allinone.demo.data.Product;
 import com.allinone.demo.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class ProductService {
@@ -36,8 +38,13 @@ public class ProductService {
 	public void deleteProduct(Long id) {
 		productRepository.deleteById(id);
 	}
-
+	
+	@Cacheable("product")
 	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
+	
+	public List<Product> getAllProductsNoCache() {
 		return productRepository.findAll();
 	}
 }

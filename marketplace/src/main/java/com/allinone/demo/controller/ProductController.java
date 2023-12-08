@@ -17,7 +17,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/product-detail/{id}")
     public String product(@PathVariable Long id, Model model) {
     	Product product = productService.getProductById(id);
 		model.addAttribute("product", product);
@@ -27,6 +27,13 @@ public class ProductController {
 	@GetMapping("/celulares")
     public String celulares(Model model) {
 		List<Product> products= productService.getAllProducts();
+		model.addAttribute("products", products);
+		return "products";
+    }
+	
+	@GetMapping("/computadores")
+    public String computadores(Model model) {
+		List<Product> products= productService.getAllProductsNoCache();
 		model.addAttribute("products", products);
 		return "products";
     }

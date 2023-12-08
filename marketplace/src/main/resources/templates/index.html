@@ -186,8 +186,10 @@
 		<div class="carousel-inner">
 			<!-- Itera sobre la lista de productos y genera elementos para cada uno -->
 			<th:block th:each="product, iterStat : ${productList}">
-				<div th:classappend="${iterStat.index == 0 ? 'carousel-item active' : 'carousel-item'}">
-					<img th:src="${product.imageUrl}" class="d-block w-100 img-responsive" th:alt="${product.name}">
+				<div th:class="${iterStat.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+					<img th:src="${product.imageUrl}" th:data-id="${product.id}" class="d-block w-100 img-responsive"
+						th:alt="${product.name}"
+						th:onclick="'window.location.href=\'/product-detail/' + ${product.id} + '\''">
 					<div class="carousel-caption d-none d-md-block">
 						<h5 th:text="${product.name}">Nombre del Producto</h5>
 					</div>
@@ -213,10 +215,7 @@
 			interval: 2000
 		});
 
-		$('.carousel-item img').on('click', function () {
-			var productId = $(this).data('id');
-			window.location.href = '/product/' + productId;
-		});
+    // No necesitas el manejador de clics aquí debido al th:onclick en cada imagen
 	</script>
 </body>
 
