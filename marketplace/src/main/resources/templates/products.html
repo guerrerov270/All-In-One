@@ -22,22 +22,6 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			height: 100%;
-		}
-
-		.card-title {
-			min-height: 3em;
-			/* Ajusta esto según el espacio que necesiten tus títulos más largos */
-		}
-
-		.card-text {
-			min-height: 2em;
-			/* Ajusta esto según tus necesidades */
-		}
-
-		.card .buy {
-			margin-top: auto;
-			/* Empuja el contenido hacia abajo */
 		}
 
 		.price {
@@ -73,7 +57,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="row">
-			<div th:each="product : ${products}" class="col-md-4 mb-4 d-flex align-items-stretch">
+			<div th:each="product : ${products}" class="col-md-4 mb-4">
 				<div class="card">
 					<a th:href="@{/product-detail/{id}(id=${product.id})}">
 						<img th:src="${product.imageUrl}" alt="Imagen del Producto" class="card-img-top img-fluid">
